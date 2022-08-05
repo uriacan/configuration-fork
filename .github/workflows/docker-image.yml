@@ -1,0 +1,21 @@
+name: build-base-image
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+env:
+  BASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-develop
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build $BASE_IMAGE 
+    - run: docker push $BASE_IMAGE
+    - run: echo "image built $BASE_IMAGE"
