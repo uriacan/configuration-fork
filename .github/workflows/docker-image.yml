@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  BASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG-develop
+  BASE_IMAGE: CI_REGISTRY_IMAGE:CI_COMMIT_REF_SLUG-develop
 jobs:
 
   build:
