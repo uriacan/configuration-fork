@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
 env:
-  BASE_IMAGE: CI_REGISTRY_IMAGE:CI_COMMIT_REF_SLUG-develop
+  BASE_IMAGE: uriacan/yaish-openhedex:config-fork
 jobs:
 
   build:
@@ -16,6 +16,6 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build $BASE_IMAGE 
+      run: docker build -t $BASE_IMAGE .
     - run: docker push $BASE_IMAGE
-    - run: echo "image built $BASE_IMAGE"
+    - run: echo image built - $BASE_IMAGE
